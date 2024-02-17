@@ -11,11 +11,20 @@ const resolvers = {
         games() {
             return db.games;
         },
+        game(parent, { id }, context) {
+            return db.games.find((game) => game.id == id);
+        },
         reviews() {
             return db.reviews;
         },
+        review(parent, { id }, context) {
+            return db.reviews.find((review) => review.id == id);
+        },
         authors() {
             return db.authors;
+        },
+        author(parent, { id }, context) {
+            return db.authors.find((author) => author.id == id);
         }
     },
 };
