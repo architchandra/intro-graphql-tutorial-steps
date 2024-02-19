@@ -3,6 +3,14 @@
 
 
 const typeDefs = `#graphql
+    type Query {
+        reviews: [Review],
+        review(id: ID!): Review,
+        games: [Game],
+        game(id: ID!): Game,
+        authors: [Author],
+        author(id: ID!): Author,
+    },
     type Game {
         id: ID!,
         title: String!,
@@ -22,14 +30,14 @@ const typeDefs = `#graphql
         verified: Boolean!,
         reviews: [Review!],
     },
-    type Query {
-        reviews: [Review],
-        review(id: ID!): Review,
-        games: [Game],
-        game(id: ID!): Game,
-        authors: [Author],
-        author(id: ID!): Author,
-    }
+    type Mutation {
+        deleteGame(id: ID!): [Game],
+        addGame(game: AddGameInput): Game,
+    },
+    input AddGameInput {
+        title: String!,
+        platforms: [String!]!,
+    },
 `;
 
 

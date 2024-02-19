@@ -27,6 +27,21 @@ const resolvers = {
             return db.authors.find((author) => author.id == args.id);
         },
     },
+    Mutation: {
+        deleteGame(parent, args) {
+            return db.games.filter((game) => game.id !== args.id);
+        },
+        addGame(parent, args) {
+            let game = {
+                id: Math.floor(Math.random() * 10000).toString(),
+                title: args.game.title,
+                platforms: args.game.platforms,
+            };
+            db.games.push(game);
+            
+            return game;
+        },
+    },
     Game: {
         reviews(parent) {
             return db.reviews.filter((review) => review.game_id === parent.id);
